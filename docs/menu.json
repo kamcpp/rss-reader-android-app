@@ -1,0 +1,40 @@
+[
+    {
+        "id": "0",
+        "text": "صفحه اصلی",
+        "englishText": "egypt",
+        "smallIconURL": "...",        
+        "bigIconURL": "...",
+	"smallIconHash": "",
+        "bigIconHash": "",
+        "articleRssURL": "...",
+        "newsRssURL": "..."
+    },
+    {
+        "id": "0",
+        "text": "مصر",
+        "englishText": "egypt",
+        "smallIconURL": "...",
+        "bigIconURL": "...",
+        "articleRssURL": "...",
+        "newsRssURL": "..."
+    },
+    {
+        "id": "0",
+        "text": "تونس",
+        "englishText": "tunisia",
+        "smallIconURL": "...",
+        "bigIconURL": "...",
+        "articleRssURL": "...",
+        "newsRssURL": "..."
+    },
+    {
+        "id": "0",
+        "text": "لیبی",
+        "englishText": "libya",
+        "smallIconURL": "...",
+        "bigIconURL": "...",
+        "articleRssURL": "...",
+        "newsRssURL": "..."
+    }
+]

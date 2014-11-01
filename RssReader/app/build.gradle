@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "rssreader.mkmazid.com.rssreader"
+        applicationId "com.ifriqiyah.android.rssreader"
         minSdkVersion 15
         targetSdkVersion 20
         versionCode 1
@@ -21,4 +21,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'commons-codec:commons-codec:1.9';
 }
