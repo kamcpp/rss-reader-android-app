@@ -2,7 +2,7 @@ package com.ifriqiyah.android.rssreader.menu;
 
 import android.util.JsonReader;
 
-import com.ifriqiyah.android.rssreader.domain.MenuItem;
+import com.ifriqiyah.android.rssreader.domain.MenuElement;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,19 +22,19 @@ public class JsonStreamToMenuItemList {
     private static final String ARTICLE_RSS_URL = "articleRssURL";
     private static final String NEWS_RSS_URL = "newsRssURL";
 
-    public static List<MenuItem> getMennuItems(InputStream inputStream) throws IOException {
-        List<MenuItem> menuItems = new ArrayList<MenuItem>();
+    public static List<MenuElement> getMennuItems(InputStream inputStream) throws IOException {
+        List<MenuElement> menuElements = new ArrayList<MenuElement>();
 
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
         reader.beginArray();
         while (reader.hasNext()) {
-            menuItems.add(readMenuItem(reader));
+            menuElements.add(readMenuItem(reader));
         }
         reader.endArray();
-        return menuItems;
+        return menuElements;
     }
 
-    private static MenuItem readMenuItem(JsonReader reader) throws IOException {
+    private static MenuElement readMenuItem(JsonReader reader) throws IOException {
         int id = -1;
         String text = null;
         String englishText = null;
@@ -71,6 +71,6 @@ public class JsonStreamToMenuItemList {
             }
         }
         reader.endObject();
-        return new MenuItem(id, text, englishText, smallIconURL, bigIconURL, smallIconHash, bigIconHash, newsRssURL, articleRssURL);
+        return new MenuElement(id, text, englishText, smallIconURL, bigIconURL, smallIconHash, bigIconHash, newsRssURL, articleRssURL);
     }
 }

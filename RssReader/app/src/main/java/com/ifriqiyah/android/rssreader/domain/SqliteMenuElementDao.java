@@ -2,10 +2,10 @@ package com.ifriqiyah.android.rssreader.domain;
 
 import java.util.List;
 
-public class SqliteMenuItemDao implements MenuItemDao {
+public class SqliteMenuElementDao implements MenuElementDao {
 
     @Override
-    public void saveOrUpdate(MenuItem menuItem) {
+    public void saveOrUpdate(MenuElement menuElement) {
 
     }
 
@@ -15,12 +15,12 @@ public class SqliteMenuItemDao implements MenuItemDao {
     }
 
     @Override
-    public List<MenuItem> getAll() {
+    public List<MenuElement> getAll() {
         return null;
     }
 
     @Override
-    public MenuItem getById(int id) {
+    public MenuElement getById(int id) {
         return null;
     }
 }

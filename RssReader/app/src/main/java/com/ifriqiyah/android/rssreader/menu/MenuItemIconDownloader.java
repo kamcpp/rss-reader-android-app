@@ -2,15 +2,17 @@ package com.ifriqiyah.android.rssreader.menu;
 
 import android.os.Environment;
 
-import com.ifriqiyah.android.rssreader.domain.MenuItem;
+import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.util.FileDownloader;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Scanner;
+
+import static com.ifriqiyah.android.rssreader.Constants.*;
 
 public class MenuItemIconDownloader {
-
-    private static final String ICONS_BASE_DIR = "http://ifriqiyah.com/android/icons";
-    private static final String DOWNLOAD_DIR = "ifapp";
 
     public static void checkAndBuildDirectories() {
         File smallIconsDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/small");
@@ -18,16 +20,43 @@ public class MenuItemIconDownloader {
         smallIconsDirectory.mkdirs();
         bigIconsDirectory.mkdirs();
     }
-    public static void checkOrDownloadMenuItemIcons(MenuItem menuItem) {
+    public static void checkOrDownloadMenuItemIcons(MenuElement menuElement) throws IOException {
         checkAndBuildDirectories();
-        File smallIconImageFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/small/" + menuItem.getId() + ".png");
-        File smallIconHashFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/small/" + menuItem.getId() + ".hash");
-        File bigIconImageFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/big/" + menuItem.getId() + ".png");
-        File bigIconHashFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/big/" + menuItem.getId() + ".hash");
+        File smallIconImageFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/small/" + menuElement.getId() + ".png");
+        File smallIconHashFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/small/" + menuElement.getId() + ".hash");
+        File bigIconImageFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/big/" + menuElement.getId() + ".png");
+        File bigIconHashFile = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + DOWNLOAD_DIR + "/menu/big/" + menuElement.getId() + ".hash");
 
+        boolean shouldDownloadSmallIcon = false;
         if (!smallIconImageFile.exists()) {
-            FileDownloader
+            shouldDownloadSmallIcon = true;
+        } else {
+            Scanner scanner = new Scanner(new FileInputStream(smallIconHashFile));
+            String hash = scanner.nextLine();
+            scanner.close();
+            if (!hash.trim().equals(menuElement.getSmallIconHash())) {
+                shouldDownloadSmallIcon = true;
+            }
         }
 
+        if(shouldDownloadSmallIcon) {
+            new FileDownloader(ICONS_BASE_URL + "/small/" + menuElement.getId() + ".png", smallIconImageFile.getAbsolutePath(), true).download();
+        }
+
+        boolean shouldDownloadBigIcon = false;
+        if (!bigIconImageFile.exists()) {
+            shouldDownloadBigIcon = true;
+        } else {
+            Scanner scanner = new Scanner(new FileInputStream(bigIconHashFile));
+            String hash = scanner.nextLine();
+            scanner.close();
+            if (!hash.trim().equals(menuElement.getBigIconHash())) {
+                shouldDownloadBigIcon = true;
+            }
+        }
+
+        if(shouldDownloadBigIcon) {
+            new FileDownloader(ICONS_BASE_URL + "/big/" + menuElement.getId() + ".png", bigIconImageFile.getAbsolutePath(), true).download();
+        }
     }
 }

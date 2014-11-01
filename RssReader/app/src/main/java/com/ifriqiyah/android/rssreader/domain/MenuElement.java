@@ -1,6 +1,6 @@
 package com.ifriqiyah.android.rssreader.domain;
 
-public class MenuItem {
+public class MenuElement {
 
     private int id;
     private String text;
@@ -12,7 +12,7 @@ public class MenuItem {
     private String newsRssURL;
     private String articleRssURL;
 
-    public MenuItem(int id, String text, String englishText, String smallIconURL, String bigIconURL, String smallIconHash, String bigIconHash, String newsRssURL, String articleRssURL) {
+    public MenuElement(int id, String text, String englishText, String smallIconURL, String bigIconURL, String smallIconHash, String bigIconHash, String newsRssURL, String articleRssURL) {
         this.id = id;
         this.text = text;
         this.englishText = englishText;
