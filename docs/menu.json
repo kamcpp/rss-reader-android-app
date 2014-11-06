@@ -2,39 +2,100 @@
     {
         "id": "0",
         "text": "صفحه اصلی",
-        "englishText": "egypt",
-        "smallIconURL": "...",        
-        "bigIconURL": "...",
-	"smallIconHash": "",
-        "bigIconHash": "",
-        "articleRssURL": "...",
-        "newsRssURL": "..."
+        "englishText": "homepage",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/0.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/0.png",
+        "smallIconHash": "8830f932f9947bab6c78175f108d6e6459a82655",
+        "bigIconHash": "c27c088a4bdad74843bb270d0b960a7cda5ae0da",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=66",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=197"
     },
     {
-        "id": "0",
+        "id": "1",
+        "text": "السودان",
+        "englishText": "Sudan",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/1.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/1.png",
+        "smallIconHash": "49c0a436231c6863d9b1314f6258c2ea6c907979",
+        "bigIconHash": "e83381cbcf1669fb9730f96d03b711856c775470",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=76",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=75"
+    },
+    {
+        "id": "2",
         "text": "مصر",
-        "englishText": "egypt",
-        "smallIconURL": "...",
-        "bigIconURL": "...",
-        "articleRssURL": "...",
-        "newsRssURL": "..."
+        "englishText": "Egypt",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/2.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/2.png",
+        "smallIconHash": "6418ed8e423b3e0894289bb1d637b4c028a4a3fd",
+        "bigIconHash": "9d5fa2a933cb628b45b24d98b2ade108bcc31906",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=93",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=207"
     },
     {
-        "id": "0",
+        "id": "3",
+        "text": "ليبيا",
+        "englishText": "Libya",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/3.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/3.png",
+        "smallIconHash": "96302164e1028a3faaacb27761cf05c9f01a0bb1",
+        "bigIconHash": "13b0cf36fd5869d147da7df1b6cfe75426f4cb0b",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=110",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=109"
+    },
+    {
+        "id": "4",
         "text": "تونس",
-        "englishText": "tunisia",
-        "smallIconURL": "...",
-        "bigIconURL": "...",
-        "articleRssURL": "...",
-        "newsRssURL": "..."
+        "englishText": "Tunisia",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/4.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/4.png",
+        "smallIconHash": "23e5ae0003fd6d5735dd2c18a4431a998385bb1a",
+        "bigIconHash": "eddc26354e7e3ef03157f635ebff41430a03bc14",
+       "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=127",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=126"
     },
     {
-        "id": "0",
-        "text": "لیبی",
-        "englishText": "libya",
-        "smallIconURL": "...",
-        "bigIconURL": "...",
-        "articleRssURL": "...",
-        "newsRssURL": "..."
+        "id": "5",
+        "text": "الجزائر",
+        "englishText": "Algeria",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/5.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/5.png",
+        "smallIconHash": "f87f6ca833ea6b21a50c62967ba351170ceaa8b5",
+        "bigIconHash": "3e87dcdda5b432ad164b4811f076afab36d8e855",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=144",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=210"
+    },
+    {
+        "id": "6",
+        "text": "المغرب",
+        "englishText": "Morocco",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/6.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/6.png",
+        "smallIconHash": "141d84ff3386ee1aad0401b30837f1fd3e5006cb",
+        "bigIconHash": "25c965c6c6d1d0ac1a6bf342aaad62814ab3f71e",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=161",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=160"
+    },
+    {
+        "id": "7",
+        "text": "موريتانيا",
+        "englishText": "Mauritania",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/7.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/7.png",
+        "smallIconHash": "0f2f820ef4e63c1506b9fdf7660b69ff6421b8b0",
+        "bigIconHash": "1b7d2c5647cb9990746faf864364b95b517f784d",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=178",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=177"
+    },
+    {
+        "id": "8",
+        "text": "العالم",
+        "englishText": "World",
+        "smallIconURL": "http://ifriqiyah.com/android/icons/small/8.png",
+        "bigIconURL": "http://ifriqiyah.com/android/icons/big/8.png",
+        "smallIconHash": "8830f932f9947bab6c78175f108d6e6459a82655",
+        "bigIconHash": "c27c088a4bdad74843bb270d0b960a7cda5ae0da",
+        "articleRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=233",
+        "newsRssURL": "http://ifriqiyah.com/rss/fullRss.aspx?T=232"
     }
 ]
