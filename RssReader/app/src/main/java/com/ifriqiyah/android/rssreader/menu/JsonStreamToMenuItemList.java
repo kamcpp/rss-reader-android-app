@@ -2,8 +2,6 @@ package com.ifriqiyah.android.rssreader.menu;
 
 import android.util.JsonReader;
 
-import com.ifriqiyah.android.rssreader.domain.MenuElement;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;

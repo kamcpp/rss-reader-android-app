@@ -1,4 +1,4 @@
-package com.ifriqiyah.android.rssreader.domain;
+package com.ifriqiyah.android.rssreader.menu;
 
 public class MenuElement {
 

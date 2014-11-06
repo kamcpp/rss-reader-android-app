@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ifriqiyah.android.rssreader.R;
-import com.ifriqiyah.android.rssreader.domain.MenuElement;
+import com.ifriqiyah.android.rssreader.menu.MenuElement;
 import com.ifriqiyah.android.rssreader.menu.MenuUpdaterTask;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
     }
 
     public void buttonLoadMenuClicked(View view) {
-        MenuUpdaterTask menuUpdaterTask = new MenuUpdaterTask();
+        MenuUpdaterTask menuUpdaterTask = new MenuUpdaterTask(getApplicationContext());
         menuUpdaterTask.execute(new Void[] {});
         try {
             String text= "";

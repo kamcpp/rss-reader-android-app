@@ -1,12 +1,13 @@
 package com.ifriqiyah.android.rssreader.menu;
 
 
+import android.content.Context;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 
-import com.ifriqiyah.android.rssreader.domain.MenuElement;
-import com.ifriqiyah.android.rssreader.domain.MenuElementDao;
-import com.ifriqiyah.android.rssreader.domain.MenuElementDaoFactory;
+import com.ifriqiyah.android.rssreader.domain.dao.DaoFactory;
+import com.ifriqiyah.android.rssreader.domain.dao.EntityDao;
+import com.ifriqiyah.android.rssreader.domain.MenuElementEntity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -19,6 +20,13 @@ import java.util.List;
 import static com.ifriqiyah.android.rssreader.Constants.*;
 
 public class MenuUpdaterTask extends AsyncTask<Void, Void, List<MenuElement>> {
+
+    private Context context;
+
+    public MenuUpdaterTask(Context context) {
+        this.context = context;
+    }
+
     @Override
     protected List<MenuElement> doInBackground(Void... voids) {
         HttpClient httpClient = AndroidHttpClient.newInstance(USER_AGENT);
@@ -28,9 +36,9 @@ public class MenuUpdaterTask extends AsyncTask<Void, Void, List<MenuElement>> {
             InputStream inputStream = httpResponse.getEntity().getContent();
             List<MenuElement> menuElements = JsonStreamToMenuItemList.getMennuItems(inputStream);
 
-            MenuElementDao menuElementDao = MenuElementDaoFactory.getMenuItemDao();
+            EntityDao<MenuElementEntity> entityDao = new DaoFactory<MenuElementEntity>().create(context, MenuElementEntity.class);
             for (MenuElement menuElement : menuElements) {
-                menuElementDao.saveOrUpdate(menuElement);
+                entityDao.saveOrUpdate(convertMenuElementToMenuElementEntity(menuElement));
                 MenuItemIconDownloader.checkOrDownloadMenuItemIcons(menuElement);
             }
             return menuElements;
@@ -38,7 +46,18 @@ public class MenuUpdaterTask extends AsyncTask<Void, Void, List<MenuElement>> {
             e.printStackTrace();
             return null;
         } finally {
-            ((AndroidHttpClient)httpClient).close();
+            ((AndroidHttpClient) httpClient).close();
         }
+    }
+
+    private MenuElementEntity convertMenuElementToMenuElementEntity(MenuElement menuElement) {
+        MenuElementEntity menuElementEntity = new MenuElementEntity();
+        menuElementEntity.setId(menuElement.getId());
+        menuElementEntity.setText(menuElement.getText());
+        menuElementEntity.setEnglishText(menuElement.getEnglishText());
+        menuElementEntity.setArticleRssURL(menuElement.getArticleRssURL());
+        menuElementEntity.setNewsRssURL(menuElement.getNewsRssURL());
+        menuElementEntity.setNotified(false);
+        return menuElementEntity;
     }
 }
