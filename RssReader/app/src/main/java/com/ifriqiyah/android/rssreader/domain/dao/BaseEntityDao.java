@@ -5,8 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.ifriqiyah.android.rssreader.domain.sqlite.MySQLiteOpenHelper;
-
 public abstract class BaseEntityDao<E> implements EntityDao<E> {
 
     protected static SQLiteOpenHelper sqLiteOpenHelper;

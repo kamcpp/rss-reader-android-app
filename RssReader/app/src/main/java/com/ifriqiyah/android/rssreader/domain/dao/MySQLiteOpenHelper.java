@@ -1,4 +1,4 @@
-package com.ifriqiyah.android.rssreader.domain.sqlite;
+package com.ifriqiyah.android.rssreader.domain.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     private final static String DATABASE_NAME = "if.db";
-    private final static int DATABASE_VERSION = 1;
+    private final static int DATABASE_VERSION = 2;
 
     public MySQLiteOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -18,6 +18,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final String NEWS_ITEM_TABLE_CREATE_QUERY = "create table news_item (" +
             "_id integer primary key autoincrement," +
+            "menu_id integer not null," +
             "source_id integer not null," +
             "title text not null," +
             "description text," +
@@ -48,7 +49,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("drop table if exists news_item");
         sqLiteDatabase.execSQL("drop table if exists menu_element");
         onCreate(sqLiteDatabase);

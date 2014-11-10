@@ -1,6 +1,7 @@
 package com.ifriqiyah.android.rssreader.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import com.ifriqiyah.android.rssreader.R;
 import com.ifriqiyah.android.rssreader.menu.MenuElement;
 import com.ifriqiyah.android.rssreader.menu.MenuUpdaterTask;
+import com.ifriqiyah.android.rssreader.services.RssFetcherService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -20,6 +22,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(getApplicationContext(), RssFetcherService.class));
     }
 
 

@@ -1,7 +1,8 @@
 package com.ifriqiyah.android.rssreader.domain;
 
 public class MenuElementEntity {
-    private  int id;
+
+    private int id;
     private String text;
     private String englishText;
     private String articleRssURL;

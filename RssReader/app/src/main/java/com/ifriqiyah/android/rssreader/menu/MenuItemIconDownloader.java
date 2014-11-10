@@ -8,6 +8,7 @@ import com.ifriqiyah.android.rssreader.util.HashProviderFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
@@ -63,7 +64,7 @@ public class MenuItemIconDownloader {
 
         if (shouldDownloadSmallIcon) {
             Log.d("DEBUG", "Downloading " + smallImageFileName);
-            new FileDownloader(smallImageFileUrl, smallIconImageFile.getAbsolutePath(), true).download();
+            new FileDownloader(smallImageFileUrl, new FileOutputStream(smallIconImageFile.getAbsolutePath()), true).download();
             PrintWriter printWriter = new PrintWriter(smallIconHashFile);
             String hash = HashProviderFactory.getHashPoProvider().hash(smallIconImageFile);
             printWriter.write(hash);
@@ -92,7 +93,7 @@ public class MenuItemIconDownloader {
 
         if (shouldDownloadBigIcon) {
             Log.d("DEBUG", "Downloading " + bigImageFileName);
-            new FileDownloader(bigImageFileUrl, bigIconImageFile.getAbsolutePath(), true).download();
+            new FileDownloader(bigImageFileUrl, new FileOutputStream(bigIconImageFile.getAbsolutePath()), true).download();
             PrintWriter printWriter = new PrintWriter(bigIconHashFile);
             String hash = HashProviderFactory.getHashPoProvider().hash(bigIconImageFile);
             printWriter.write(hash);
