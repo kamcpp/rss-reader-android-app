@@ -2,6 +2,7 @@ package com.ifriqiyah.android.rssreader.util;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -37,12 +38,15 @@ public class FileDownloader {
     }
 
     public void download() throws IOException {
-        AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
-
+        Log.d("DEBUG", "Inside download method ...");
+        Thread thread = new Thread(new Runnable() {
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void run() {
+                Log.d("DEBUG", "Making httpClient ...");
                 HttpClient httpClient = AndroidHttpClient.newInstance(USER_AGENT);
+                Log.d("DEBUG", "Making httpGet for uri: '" + uri + "' ...");
                 HttpGet httpGet = new HttpGet(uri);
+                Log.d("DEBUG", "Ready to download ...");
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpGet);
                     InputStream inputStream = httpResponse.getEntity().getContent();
@@ -59,14 +63,14 @@ public class FileDownloader {
                 } finally {
                     ((AndroidHttpClient) httpClient).close();
                 }
-                return null;
             }
-        }.execute();
+        });
         try {
-            asyncTask.get();
+            Log.d("DEBUG", "Starting ...");
+            thread.start();
+            thread.join();
+            Log.d("DEBUG", "Done.");
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }

@@ -63,7 +63,9 @@ public class MenuItemIconDownloader {
         }
 
         if (shouldDownloadSmallIcon) {
-            Log.d("DEBUG", "Downloading " + smallImageFileName);
+            Log.d("DEBUG", "Downloading small image: " + smallImageFileName);
+            Log.d("DEBUG", smallImageFileUrl);
+            Log.d("DEBUG", "Calling download method ...");
             new FileDownloader(smallImageFileUrl, new FileOutputStream(smallIconImageFile.getAbsolutePath()), true).download();
             PrintWriter printWriter = new PrintWriter(smallIconHashFile);
             String hash = HashProviderFactory.getHashPoProvider().hash(smallIconImageFile);
@@ -92,7 +94,8 @@ public class MenuItemIconDownloader {
 
 
         if (shouldDownloadBigIcon) {
-            Log.d("DEBUG", "Downloading " + bigImageFileName);
+            Log.d("DEBUG", "Downloading big image: " + bigImageFileName);
+            Log.d("DEBUG", bigImageFileUrl);
             new FileDownloader(bigImageFileUrl, new FileOutputStream(bigIconImageFile.getAbsolutePath()), true).download();
             PrintWriter printWriter = new PrintWriter(bigIconHashFile);
             String hash = HashProviderFactory.getHashPoProvider().hash(bigIconImageFile);

@@ -21,14 +21,6 @@ public class RssFetcherService extends Service {
     private NewsItemSync newsItemSync = new NewsItemSync();
     private Handler handler = new Handler();
 
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            updateNews();
-            handler.postDelayed(this, 30000);
-        }
-    };
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -36,11 +28,17 @@ public class RssFetcherService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        handler.postDelayed(runnable, 1000);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                updateNews();
+                handler.postDelayed(this, 30000);
+            }
+        }, 1000);
         return START_STICKY;
     }
 
-    public void updateNews() {
+    private void updateNews() {
         List<MenuElementEntity> menuElementEntities = menuElementDao.getAll();
         for (MenuElementEntity menuElementEntity : menuElementEntities) {
             List<NewsItemEntity> newsItemEntities = rssFetcher.fetch(menuElementEntity.getNewsRssURL(), menuElementEntity.getId(), false);

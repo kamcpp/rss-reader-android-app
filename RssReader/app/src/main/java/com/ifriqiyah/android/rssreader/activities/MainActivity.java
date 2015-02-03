@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(getApplicationContext(), RssFetcherService.class));
+        // startService(new Intent(getApplicationContext(), RssFetcherService.class));
     }
 
 
