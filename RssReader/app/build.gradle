@@ -21,4 +21,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'commons-codec:commons-codec:1.9';
+    compile 'com.j256.ormlite:ormlite-android:4.48'
+    compile 'com.j256.ormlite:ormlite-core:4.48'
+    compile 'com.j256.ormlite:ormlite-jdbc:4.48'
 }

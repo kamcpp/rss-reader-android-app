@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme"
         android:name=".MyApplication">
         <activity
-            android:name="com.ifriqiyah.android.rssreader.activities.MainActivity"
+            android:name="com.ifriqiyah.android.rssreader.MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".services.RssFetcherService" />
+
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

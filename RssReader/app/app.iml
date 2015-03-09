@@ -83,6 +83,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 20 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="ormlite-android-4.48" level="project" />
+    <orderEntry type="library" exported="" name="ormlite-core-4.48" level="project" />
+    <orderEntry type="library" exported="" name="ormlite-jdbc-4.48" level="project" />
     <orderEntry type="library" exported="" name="commons-codec-1.9" level="project" />
   </component>
 </module>
