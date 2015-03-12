@@ -3,11 +3,9 @@ package com.ifriqiyah.android.rssreader.adapter;
 import com.ifriqiyah.android.rssreader.MyApplication;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.j256.ormlite.dao.Dao;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 
 public class MenuElementModel {

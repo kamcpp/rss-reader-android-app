@@ -1,6 +1,5 @@
 package com.ifriqiyah.android.rssreader;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,11 +7,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-
 import com.ifriqiyah.android.rssreader.adapter.MenuElementAdapter;
 import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
 import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
-
 import java.io.File;
 import java.io.IOException;
 

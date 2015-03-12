@@ -2,13 +2,6 @@ package com.ifriqiyah.android.rssreader;
 
 import android.app.Application;
 import android.content.Context;
-
-import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
-import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
-
-import java.io.File;
-import java.io.IOException;
-
 import dagger.ObjectGraph;
 
 public class MyApplication extends Application {

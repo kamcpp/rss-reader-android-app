@@ -1,7 +1,6 @@
 package com.ifriqiyah.android.rssreader.domain.dao;
 
 import android.database.sqlite.SQLiteDatabase;
-
 import com.ifriqiyah.android.rssreader.MyApplication;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.domain.NewsItem;

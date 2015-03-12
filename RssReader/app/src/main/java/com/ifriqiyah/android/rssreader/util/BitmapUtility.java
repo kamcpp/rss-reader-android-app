@@ -2,7 +2,6 @@ package com.ifriqiyah.android.rssreader.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import java.io.ByteArrayOutputStream;
 
 public class BitmapUtility {
@@ -15,7 +14,9 @@ public class BitmapUtility {
         return stream.toByteArray();
     }
 
-    // convert from byte array to bitmap
+    /**
+     * convert from byte array to bitmap
+     */
     public static Bitmap getImage(byte[] image) {
         if (image == null) {
             return null;

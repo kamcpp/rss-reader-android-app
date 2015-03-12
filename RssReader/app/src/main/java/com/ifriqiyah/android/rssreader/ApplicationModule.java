@@ -7,11 +7,9 @@ import com.ifriqiyah.android.rssreader.domain.NewsItem;
 import com.ifriqiyah.android.rssreader.domain.dao.ORMLiteOpenHelper;
 import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
 import com.j256.ormlite.dao.Dao;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Singleton;
 
 import dagger.Module;

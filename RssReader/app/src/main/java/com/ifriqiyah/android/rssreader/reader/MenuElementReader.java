@@ -7,13 +7,11 @@ import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.util.Constants;
 import com.ifriqiyah.android.rssreader.util.HttpHelper;
 import com.j256.ormlite.dao.Dao;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.inject.Inject;
 
 public class MenuElementReader {

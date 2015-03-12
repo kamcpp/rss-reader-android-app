@@ -7,19 +7,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.ifriqiyah.android.rssreader.MyApplication;
 import com.ifriqiyah.android.rssreader.R;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.util.BitmapUtility;
 import com.j256.ormlite.dao.Dao;
-
+import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class MenuElementAdapter extends MyArrayAdapter<MenuElement> {
+public class MenuElementAdapter extends ArrayAdapter<MenuElement> {
 
     @Inject
     List<MenuElement> menuElements;
@@ -29,8 +28,17 @@ public class MenuElementAdapter extends MyArrayAdapter<MenuElement> {
 
     public MenuElementAdapter() {
         super(MyApplication.getContext(), R.layout.menu_element_layout);
-        MyApplication.getObjectGraph().inject(this);
-        mObjects = menuElements;
+        try {
+            Field mObjects1 = this.getClass().getSuperclass().getDeclaredField("mObjects");
+            MyApplication.getObjectGraph().inject(this);
+            mObjects1.setAccessible(true);
+            mObjects1.set(this, menuElements);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
