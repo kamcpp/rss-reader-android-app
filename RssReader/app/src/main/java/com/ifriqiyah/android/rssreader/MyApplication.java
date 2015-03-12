@@ -3,6 +3,7 @@ package com.ifriqiyah.android.rssreader;
 import android.app.Application;
 import android.content.Context;
 
+import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
 import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
 
 import java.io.File;
@@ -18,20 +19,10 @@ public class MyApplication extends Application {
 
     @Override
     public void onCreate() {
-
+        super.onCreate();
         context = getApplicationContext();
         myPackageName = getPackageName();
         objectGraph = ObjectGraph.create(new ApplicationModule());
-
-        //if (new File("/data/data/" + myPackageName + "/files/").exists()) {
-            new File("/data/data/" + myPackageName + "/files/").mkdir();
-            try {
-                new MenuElementReader().readAndFillList();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        //}
-        super.onCreate();
     }
 
     public static Context getContext() {

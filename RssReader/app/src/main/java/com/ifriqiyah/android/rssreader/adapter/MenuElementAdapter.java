@@ -44,7 +44,9 @@ public class MenuElementAdapter extends MyArrayAdapter<MenuElement> {
             e.printStackTrace();
         }
         ImageView viewById = (ImageView) menuElementView.findViewById(R.id.imageViewBigIcon);
-        viewById.setImageBitmap(BitmapUtility.getImage(menuElement.getBigIcon()));
+        if (menuElement.getBigIcon() != null) {
+            viewById.setImageBitmap(BitmapUtility.getImage(menuElement.getBigIcon()));
+        }
         TextView viewById1 = (TextView) menuElementView.findViewById(R.id.textViewText);
         viewById1.setText(menuElement.getText());
         TextView viewById2 = (TextView) menuElementView.findViewById(R.id.textViewTextEn);

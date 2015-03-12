@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
 public class MenuElement {
-    @DatabaseField(id = true , dataType = DataType.INTEGER)
+    @DatabaseField(id = true, dataType = DataType.INTEGER)
     private int id;
     @DatabaseField(dataType = DataType.STRING)
     private String text;
@@ -14,19 +14,25 @@ public class MenuElement {
     private String articleRssURL;
     @DatabaseField(dataType = DataType.STRING)
     private String newsRssURL;
-    @DatabaseField(dataType = DataType.BYTE_ARRAY )
+    @DatabaseField(dataType = DataType.STRING)
+    private String smallIconUrl;
+    @DatabaseField(dataType = DataType.STRING)
+    private String bigIconUrl;
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
     private byte[] smallIcon;
-    @DatabaseField(dataType = DataType.BYTE_ARRAY )
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
     private byte[] bigIcon;
     @DatabaseField(dataType = DataType.BOOLEAN)
     private boolean notified;
 
-    public MenuElement(int id, String text, String englishText, String articleRssURL, String newsRssURL) {
+    public MenuElement(int id, String text, String englishText, String bigIconUrl, String smallIconUrl, String articleRssURL, String newsRssURL) {
         this.id = id;
         this.text = text;
         this.englishText = englishText;
         this.articleRssURL = articleRssURL;
         this.newsRssURL = newsRssURL;
+        this.bigIconUrl = bigIconUrl;
+        this.smallIconUrl = smallIconUrl;
     }
 
     public MenuElement() {
@@ -71,6 +77,22 @@ public class MenuElement {
 
     public void setNewsRssURL(String newsRssURL) {
         this.newsRssURL = newsRssURL;
+    }
+
+    public String getSmallIconUrl() {
+        return smallIconUrl;
+    }
+
+    public void setSmallIconUrl(String smallIconUrl) {
+        this.smallIconUrl = smallIconUrl;
+    }
+
+    public String getBigIconUrl() {
+        return bigIconUrl;
+    }
+
+    public void setBigIconUrl(String bigIconUrl) {
+        this.bigIconUrl = bigIconUrl;
     }
 
     public boolean isNotified() {

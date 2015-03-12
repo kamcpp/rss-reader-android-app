@@ -5,21 +5,49 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.ifriqiyah.android.rssreader.adapter.MenuElementAdapter;
+import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
+import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
+
+import java.io.File;
+import java.io.IOException;
 
 public class MainActivity extends Activity {
-    ListView listViewMenuElement;
+
+    private ListView listViewMenuElement;
+    private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listViewMenuElement = (ListView)findViewById(R.id.listViewMenuElement);
-        MenuElementAdapter menuElementAdapter = new MenuElementAdapter();
-        listViewMenuElement.setAdapter((menuElementAdapter));
-    }
 
+        listViewMenuElement = (ListView) findViewById(R.id.listViewMenuElement);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (!new File("/data/data/" + MyApplication.getMyPackageName() + "/files/").exists()) {
+                    new File("/data/data/" + MyApplication.getMyPackageName() + "/files/").mkdir();
+                    try {
+                        new MenuElementReader().readAndFillList();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                new MenuElementModel().refresh();
+                listViewMenuElement.setAdapter(new MenuElementAdapter());
+                listViewMenuElement.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+        }).start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

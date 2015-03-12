@@ -34,16 +34,29 @@ public class MenuElementReader {
         reader.beginArray();
         while (reader.hasNext()) {
             try {
-                menuElementDao.createOrUpdate(readMenuItem(reader));
+                MenuElement menuElement = downloadMenuItemInfo(reader);
+                menuElementDao.createOrUpdate(menuElement);
+                try {
+                    downloadMediaForMenuElement(menuElement);
+                    menuElementDao.createOrUpdate(menuElement);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println(">>>> " + menuElements.size());
         reader.endArray();
     }
 
-    private MenuElement readMenuItem(JsonReader reader) throws IOException {
+    private void downloadMediaForMenuElement(MenuElement menuElement) throws IOException {
+        byte[] bytesBig = new HttpHelper().downloadAsByteArray(menuElement.getBigIconUrl());
+        byte[] bytesSmall = new HttpHelper().downloadAsByteArray(menuElement.getSmallIconUrl());
+        menuElement.setBigIcon(bytesBig);
+        menuElement.setSmallIcon(bytesSmall);
+    }
+
+    private MenuElement downloadMenuItemInfo(JsonReader reader) throws IOException {
         int id = -1;
         String text = null;
         String englishText = null;
@@ -80,11 +93,6 @@ public class MenuElementReader {
             }
         }
         reader.endObject();
-        byte[] bytesBig = new HttpHelper().downloadAsByteArray(bigIconURL);
-        byte[] bytesSmall = new HttpHelper().downloadAsByteArray(smallIconURL);
-        MenuElement menuElement = new MenuElement(id, text, englishText, articleRssURL, newsRssURL);
-        menuElement.setBigIcon(bytesBig);
-        menuElement.setSmallIcon(bytesSmall);
-        return menuElement;
+        return new MenuElement(id, text, englishText, bigIconURL, smallIconURL, articleRssURL, newsRssURL);
     }
 }
