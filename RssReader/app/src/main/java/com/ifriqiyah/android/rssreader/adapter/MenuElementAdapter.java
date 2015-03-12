@@ -15,18 +15,28 @@ import com.ifriqiyah.android.rssreader.util.BitmapUtility;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
-public class MenuElementAdapter extends ArrayAdapter<MenuElement>{
+import javax.inject.Inject;
+
+public class MenuElementAdapter extends MyArrayAdapter<MenuElement> {
+
+    @Inject
+    List<MenuElement> menuElements;
+
+    @Inject
+    Dao<MenuElement, Integer> menuElementDao;
 
     public MenuElementAdapter() {
-        super(MyApplication.getContext() , R.layout.menu_element_layout,MyApplication.getMenuElementEntities());
+        super(MyApplication.getContext(), R.layout.menu_element_layout);
+        MyApplication.getObjectGraph().inject(this);
+        mObjects = menuElements;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater layoutInflater = (LayoutInflater) MyApplication.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View menuElementView = layoutInflater.inflate(R.layout.menu_element_layout, null);
-        Dao<MenuElement, Integer> menuElementDao = MyApplication.getMenuElementDao();
         MenuElement menuElement = null;
         try {
             menuElement = menuElementDao.queryForId(position);

@@ -6,10 +6,12 @@ import android.graphics.BitmapFactory;
 import java.io.ByteArrayOutputStream;
 
 public class BitmapUtility {
-    // convert from bitmap to byte array
+    /**
+     * convert from bitmap to byte array
+     */
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         return stream.toByteArray();
     }
 

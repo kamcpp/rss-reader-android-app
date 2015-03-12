@@ -24,4 +24,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.j256.ormlite:ormlite-core:4.48'
     compile 'com.j256.ormlite:ormlite-jdbc:4.48'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup:javawriter:2.5.0'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.1'
 }

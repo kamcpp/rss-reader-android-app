@@ -1,37 +1,49 @@
 package com.ifriqiyah.android.rssreader.reader;
 
-
 import android.util.JsonReader;
 
 import com.ifriqiyah.android.rssreader.MyApplication;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.util.Constants;
 import com.ifriqiyah.android.rssreader.util.HttpHelper;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.util.List;
 
+import javax.inject.Inject;
 
 public class MenuElementReader {
 
+    @Inject
+    List<MenuElement> menuElements;
 
-    public static void readAndFillList() throws IOException {
+    @Inject
+    Dao<MenuElement, Integer> menuElementDao;
+
+    public MenuElementReader() {
+        MyApplication.getObjectGraph().inject(this);
+    }
+
+    public void readAndFillList() throws IOException {
         HttpHelper.downloadToFile(Constants.MENU_JSON_FILE_URL, "/data/data/" + MyApplication.getMyPackageName() + "/files/menu.json");
-        JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream("/data/data/" + MyApplication.getMyPackageName()+ "/files/menu.json"), "UTF-8"));
+        JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream("/data/data/" + MyApplication.getMyPackageName() + "/files/menu.json"), "UTF-8"));
         reader.beginArray();
         while (reader.hasNext()) {
             try {
-                MyApplication.getMenuElementDao().createOrUpdate(readMenuItem(reader));
+                menuElementDao.createOrUpdate(readMenuItem(reader));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("qazxsw"+MyApplication.getMenuElementEntities().size());
+        System.out.println(">>>> " + menuElements.size());
         reader.endArray();
     }
-    private static MenuElement readMenuItem(JsonReader reader) throws IOException {
+
+    private MenuElement readMenuItem(JsonReader reader) throws IOException {
         int id = -1;
         String text = null;
         String englishText = null;
