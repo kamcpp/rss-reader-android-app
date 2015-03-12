@@ -29,7 +29,7 @@ public class MenuElementReader {
     }
 
     public void readAndFillList() throws IOException {
-        HttpHelper.downloadToFile(Constants.MENU_JSON_FILE_URL, "/data/data/" + MyApplication.getMyPackageName() + "/files/menu.json");
+        new HttpHelper().downloadToFile(Constants.MENU_JSON_FILE_URL, "/data/data/" + MyApplication.getMyPackageName() + "/files/menu.json");
         JsonReader reader = new JsonReader(new InputStreamReader(new FileInputStream("/data/data/" + MyApplication.getMyPackageName() + "/files/menu.json"), "UTF-8"));
         reader.beginArray();
         while (reader.hasNext()) {
@@ -80,8 +80,8 @@ public class MenuElementReader {
             }
         }
         reader.endObject();
-        byte[] bytesBig = HttpHelper.downloadAsByteArray(bigIconURL);
-        byte[] bytesSmall = HttpHelper.downloadAsByteArray(smallIconURL);
+        byte[] bytesBig = new HttpHelper().downloadAsByteArray(bigIconURL);
+        byte[] bytesSmall = new HttpHelper().downloadAsByteArray(smallIconURL);
         MenuElement menuElement = new MenuElement(id, text, englishText, articleRssURL, newsRssURL);
         menuElement.setBigIcon(bytesBig);
         menuElement.setSmallIcon(bytesSmall);

@@ -1,8 +1,11 @@
 package com.ifriqiyah.android.rssreader;
 
+import com.ifriqiyah.android.rssreader.adapter.MenuElementAdapter;
+import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.domain.NewsItem;
 import com.ifriqiyah.android.rssreader.domain.dao.ORMLiteOpenHelper;
+import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
 import com.j256.ormlite.dao.Dao;
 
 import java.sql.SQLException;
@@ -14,7 +17,10 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(library = true)
+@Module(library = true,
+        injects = {MenuElementAdapter.class,
+                MenuElementModel.class,
+                MenuElementReader.class})
 public class ApplicationModule {
 
     private ORMLiteOpenHelper ormLiteOpenHelper;
