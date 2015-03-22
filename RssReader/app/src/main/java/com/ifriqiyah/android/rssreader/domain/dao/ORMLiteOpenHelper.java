@@ -24,6 +24,7 @@ public class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
+            System.out.println("==>>> creating");
             TableUtils.createTable(connectionSource, MenuElement.class);
             TableUtils.createTable(connectionSource, NewsItem.class);
         } catch (SQLException e) {
@@ -44,12 +45,14 @@ public class ORMLiteOpenHelper extends OrmLiteSqliteOpenHelper {
     public Dao<MenuElement, Integer> getMenuElementDao() throws SQLException {
         if (menuElementDao == null) {
             menuElementDao = getDao(MenuElement.class);
+            System.out.println("==>>> menu item class : "+menuElementDao.getClass());
         }
         return menuElementDao;
     }
     public Dao<NewsItem, Integer> getNewsItemDao() throws SQLException {
         if (newsItemDao == null) {
             newsItemDao = getDao(NewsItem.class);
+            System.out.println("==>>> news item class : "+newsItemDao.getClass());
         }
         return newsItemDao;
     }

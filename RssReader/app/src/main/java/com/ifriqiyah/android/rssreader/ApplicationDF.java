@@ -1,39 +1,36 @@
 package com.ifriqiyah.android.rssreader;
 
-import com.ifriqiyah.android.rssreader.adapter.MenuElementAdapter;
-import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.domain.NewsItem;
 import com.ifriqiyah.android.rssreader.domain.dao.ORMLiteOpenHelper;
-import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
+
 import com.j256.ormlite.dao.Dao;
+
+import org.labcrypto.avicenna.Dependency;
+import org.labcrypto.avicenna.DependencyFactory;
+import org.labcrypto.avicenna.Singleton;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Singleton;
 
-import dagger.Module;
-import dagger.Provides;
 
-@Module(library = true,
-        injects = {MenuElementAdapter.class,
-                MenuElementModel.class,
-                MenuElementReader.class})
-public class ApplicationModule {
+@DependencyFactory
+public class ApplicationDF {
 
     private ORMLiteOpenHelper ormLiteOpenHelper;
 
-    public ApplicationModule() {
+    public ApplicationDF() {
         ormLiteOpenHelper = new ORMLiteOpenHelper();
     }
 
-    @Provides
+    @Dependency
     @Singleton
     public List<MenuElement> provideMenuElements() {
         return new ArrayList<MenuElement>();
     }
 
-    @Provides
+    @Dependency
     @Singleton
     public Dao<MenuElement, Integer> provideMenuElementDao() {
         try {
@@ -43,9 +40,9 @@ public class ApplicationModule {
         }
     }
 
-    @Provides
+    @Dependency
     @Singleton
-    public Dao<NewsItem, Integer> provideMenuItemDao() {
+    public Dao<NewsItem, Integer> provideNewsItemDao() {
         try {
             return ormLiteOpenHelper.getNewsItemDao();
         } catch (SQLException e) {

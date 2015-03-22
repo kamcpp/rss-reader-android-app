@@ -12,25 +12,28 @@ import com.ifriqiyah.android.rssreader.R;
 import com.ifriqiyah.android.rssreader.domain.MenuElement;
 import com.ifriqiyah.android.rssreader.util.BitmapUtility;
 import com.j256.ormlite.dao.Dao;
+
+import org.labcrypto.avicenna.Avicenna;
+import org.labcrypto.avicenna.InjectHere;
+
 import java.lang.reflect.Field;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.inject.Inject;
 
 public class MenuElementAdapter extends ArrayAdapter<MenuElement> {
 
-    @Inject
+    @InjectHere
     List<MenuElement> menuElements;
 
-    @Inject
+    @InjectHere
     Dao<MenuElement, Integer> menuElementDao;
 
     public MenuElementAdapter() {
         super(MyApplication.getContext(), R.layout.menu_element_layout);
         try {
             Field mObjects1 = this.getClass().getSuperclass().getDeclaredField("mObjects");
-            MyApplication.getObjectGraph().inject(this);
+            Avicenna.inject(this);
             mObjects1.setAccessible(true);
             mObjects1.set(this, menuElements);
         } catch (NoSuchFieldException e) {

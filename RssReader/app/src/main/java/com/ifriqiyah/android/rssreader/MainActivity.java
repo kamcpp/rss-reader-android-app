@@ -7,9 +7,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+
 import com.ifriqiyah.android.rssreader.adapter.MenuElementAdapter;
 import com.ifriqiyah.android.rssreader.adapter.MenuElementModel;
 import com.ifriqiyah.android.rssreader.reader.MenuElementReader;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -39,11 +41,17 @@ public class MainActivity extends Activity {
                     }
                 }
                 new MenuElementModel().refresh();
-                listViewMenuElement.setAdapter(new MenuElementAdapter());
-                listViewMenuElement.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listViewMenuElement.setAdapter(new MenuElementAdapter());
+                        listViewMenuElement.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
             }
         }).start();
+
     }
 
     @Override

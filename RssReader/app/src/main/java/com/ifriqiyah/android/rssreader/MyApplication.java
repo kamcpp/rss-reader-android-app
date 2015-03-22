@@ -2,20 +2,20 @@ package com.ifriqiyah.android.rssreader;
 
 import android.app.Application;
 import android.content.Context;
-import dagger.ObjectGraph;
+
+import org.labcrypto.avicenna.Avicenna;
 
 public class MyApplication extends Application {
 
     private static Context context;
     private static String myPackageName;
-    private static ObjectGraph objectGraph;
 
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
         myPackageName = getPackageName();
-        objectGraph = ObjectGraph.create(new ApplicationModule());
+        Avicenna.addDependencyFactory(new ApplicationDF());
     }
 
     public static Context getContext() {
@@ -24,9 +24,5 @@ public class MyApplication extends Application {
 
     public static String getMyPackageName() {
         return myPackageName;
-    }
-
-    public static ObjectGraph getObjectGraph() {
-        return objectGraph;
     }
 }
